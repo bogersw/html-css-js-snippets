@@ -1,0 +1,109 @@
+/* Ratio playing card width / length -> 1,390625 */
+
+:root {
+    --scale-factor: 1;
+    --card-width: 200px;
+    --card-height: calc(var(--card-width) * 1.390625);
+    --card-border-radius: calc(var(--scale-factor) * 15px);
+    --card-padding-middle: calc(var(--scale-factor) * 35px);
+    --card-color: beige;
+    --col-middle-font-size: calc(var(--scale-factor) * 24px);
+    --col-left-right-font-size: calc(var(--scale-factor) * 20px);
+    --rank-font-size: calc(var(--scale-factor) * 30px);
+}
+
+.game {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 20px;
+}
+
+.stack {
+    width: var(--card-width);
+    height: var(--card-height);
+    border: 1px solid darkgray;
+    border-radius: var(--card-border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.8), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    width: var(--card-width);
+    height: var(--card-height);
+    border: 1px solid darkgray;
+    border-radius: var(--card-border-radius);
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.8), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    background-color: var(--card-color);
+}
+
+.card:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.col-middle {
+    font-size: var(--col-middle-font-size);
+    padding-top: var(--card-padding-middle);
+    padding-bottom: var(--card-padding-middle);
+}
+
+.col-middle-one-row {
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 1;
+}
+
+.col-middle-five-rows {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: calc((var(--card-height) - 2 * var(--card-padding)) / 5);
+}
+
+.col-middle-seven-rows {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: calc((var(--card-height) - 2 * var(--card-padding)) / 7);
+}
+
+.col-left,
+.col-right {
+    border-top-left-radius: var(--card-border-radius);
+    border-bottom-left-radius: var(--card-border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 5px;
+    font-size: var(--col-left-right-font-size);
+}
+
+.col-left-rank,
+.col-right-rank {
+    font-size: var(--rank-font-size);
+    font-weight: bold;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.card-face {
+    width: 100%;
+    height: 100%;
+}
+
+.card-back {
+    width: 90%;
+    height: 93%;
+    border: 1px solid darkgray;
+    border-radius: var(--card-border-radius);
+}
